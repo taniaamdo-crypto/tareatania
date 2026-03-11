@@ -5,253 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4to Semestre - Bachilleres</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Librería para generar códigos QR -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8fafc;
-        }
-
-        .subject-card {
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .subject-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-        }
-
-        .qr-card {
-            background: white;
-            padding: 1.25rem;
-            border-radius: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 1px solid #e2e8f0;
-            transition: all 0.2s;
-        }
-
-        .qr-card:hover {
-            border-color: #ec4899;
-            background-color: #fff1f2;
-        }
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; }
+        .subject-card { transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; }
+        .subject-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .qr-card { background: white; padding: 1.25rem; border-radius: 1rem; display: flex; flex-direction: column; align-items: center; border: 1px solid #e2e8f0; transition: all 0.2s; }
+        #loading-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.9); z-index: 9999; justify-content: center; align-items: center; font-weight: bold; color: #db2777; }
     </style>
 </head>
 <body class="text-gray-800">
 
-    <!-- Header Estilo Educativo -->
+    <div id="loading-overlay">Sincronizando con la nube...</div>
+
     <header class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-16 px-4 text-center shadow-xl">
         <h1 class="text-5xl font-extrabold mb-4 tracking-tight">Mi 4to Semestre</h1>
-        <p class="text-blue-100 text-xl max-w-2xl mx-auto font-light">Organización de asignaturas, contenidos temáticos y portafolio digital de evidencias.</p>
+        <p class="text-blue-100 text-xl font-light">Colegio de Bachilleres | Portafolio Digital</p>
     </header>
 
     <main class="max-w-7xl mx-auto py-12 px-6">
-        
-        <!-- Grid de Materias -->
         <h2 class="text-2xl font-bold text-gray-700 mb-8 border-l-4 border-blue-600 pl-4">Mapa Curricular</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            
-            <!-- Materia 1 -->
             <div class="subject-card bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                <div>
-                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded mb-3 inline-block uppercase">Tecnología</span>
-                    <h3 class="text-xl font-bold mb-2">Taller de Cultura Digital</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Fomenta el uso responsable y creativo de las herramientas digitales para la investigación, comunicación y resolución de problemas en el entorno virtual.</p>
-                </div>
+                <h3 class="text-xl font-bold mb-2">Taller de Cultura Digital</h3>
+                <p class="text-gray-600 text-sm">Uso responsable y creativo de herramientas digitales.</p>
             </div>
-
-            <!-- Materia 2 -->
             <div class="subject-card bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                <div>
-                    <span class="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded mb-3 inline-block uppercase">Sociales</span>
-                    <h3 class="text-xl font-bold mb-2">Ciencias Sociales 3</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Analiza las estructuras sociales contemporáneas y el impacto de los fenómenos económicos y políticos en la vida cotidiana de las personas.</p>
-                </div>
+                <h3 class="text-xl font-bold mb-2">Ciencias Sociales 3</h3>
+                <p class="text-gray-600 text-sm">Análisis de estructuras sociales y fenómenos económicos.</p>
             </div>
-
-            <!-- Materia 3 -->
             <div class="subject-card bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                <div>
-                    <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded mb-3 inline-block uppercase">Historia</span>
-                    <h3 class="text-xl font-bold mb-2">Conciencia Histórica 1</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Estudia el pasado para comprender el presente, desarrollando un pensamiento crítico sobre la identidad y el papel de México en el mundo.</p>
-                </div>
+                <h3 class="text-xl font-bold mb-2">Conciencia Histórica 1</h3>
+                <p class="text-gray-600 text-sm">Estudio del pasado para comprender el presente de México.</p>
             </div>
-
-            <!-- Materia 4 -->
             <div class="subject-card bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                <div>
-                    <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded mb-3 inline-block uppercase">Geografía</span>
-                    <h3 class="text-xl font-bold mb-2">Espacio y Sociedad</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Explora la relación entre el medio físico y las actividades humanas, analizando el aprovechamiento sustentable de los recursos naturales.</p>
-                </div>
+                <h3 class="text-xl font-bold mb-2">Espacio y Sociedad</h3>
+                <p class="text-gray-600 text-sm">Relación entre medio físico y actividades humanas.</p>
             </div>
-
-            <!-- Materia 5 -->
             <div class="subject-card bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                <div>
-                    <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded mb-3 inline-block uppercase">Humanidades</span>
-                    <h3 class="text-xl font-bold mb-2">Pensamiento Literario</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Un acercamiento a las grandes obras y autores, fomentando la apreciación estética y el análisis crítico de diferentes géneros y corrientes.</p>
-                </div>
+                <h3 class="text-xl font-bold mb-2">Pensamiento Literario</h3>
+                <p class="text-gray-600 text-sm">Apreciación estética y análisis de obras literarias.</p>
             </div>
-
-            <!-- Materia 6 -->
             <div class="subject-card bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                <div>
-                    <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded mb-3 inline-block uppercase">Matemáticas</span>
-                    <h3 class="text-xl font-bold mb-2">Temas Selectos de Matemáticas</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Profundiza en conceptos avanzados de álgebra y trigonometría para fortalecer el razonamiento lógico y la capacidad analítica.</p>
-                </div>
+                <h3 class="text-xl font-bold mb-2">Temas Selectos de Matemáticas</h3>
+                <p class="text-gray-600 text-sm">Conceptos avanzados de álgebra y razonamiento lógico.</p>
             </div>
-
-            <!-- Materia 7 -->
             <div class="subject-card bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                <div>
-                    <span class="text-xs font-bold text-cyan-600 bg-cyan-50 px-2 py-1 rounded mb-3 inline-block uppercase">Ciencias Experimentales</span>
-                    <h3 class="text-xl font-bold mb-2">Reacciones Químicas</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Estudio de los cambios en la materia, estequiometría y leyes químicas que rigen las interacciones de los elementos en el laboratorio y la naturaleza.</p>
-                </div>
+                <h3 class="text-xl font-bold mb-2">Reacciones Químicas</h3>
+                <p class="text-gray-600 text-sm">Estudio de cambios en la materia y leyes químicas.</p>
             </div>
-
-            <!-- Materia 8 -->
             <div class="subject-card bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                <div>
-                    <span class="text-xs font-bold text-yellow-600 bg-yellow-50 px-2 py-1 rounded mb-3 inline-block uppercase">Bienestar</span>
-                    <h3 class="text-xl font-bold mb-2">Formación Socioemocional 4</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Desarrolla habilidades de autoconocimiento, resiliencia y empatía para una mejor convivencia y toma de decisiones en la vida diaria.</p>
-                </div>
+                <h3 class="text-xl font-bold mb-2">Formación Socioemocional 4</h3>
+                <p class="text-gray-600 text-sm">Habilidades de autoconocimiento, resiliencia y empatía.</p>
             </div>
-
-            <!-- Materia 9 -->
             <div class="subject-card bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                <div>
-                    <span class="text-xs font-bold text-teal-600 bg-teal-50 px-2 py-1 rounded mb-3 inline-block uppercase">Lengua Extranjera</span>
-                    <h3 class="text-xl font-bold mb-2">Inglés 4</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Consolidación de las cuatro habilidades lingüísticas: hablar, leer, escribir y escuchar, con énfasis en estructuras gramaticales de nivel intermedio.</p>
-                </div>
+                <h3 class="text-xl font-bold mb-2">Inglés 4</h3>
+                <p class="text-gray-600 text-sm">Consolidación de las cuatro habilidades lingüísticas.</p>
             </div>
         </div>
 
-        <!-- SECCIÓN ESPECIAL: MANTENIMIENTO Y REDES (Portafolio Canva) -->
-        <section id="canva-section" class="bg-white p-10 rounded-3xl shadow-lg border-2 border-pink-100">
+        <!-- MANTENIMIENTO Y REDES -->
+        <section class="bg-white p-10 rounded-3xl shadow-lg border-2 border-pink-100">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-10">
-                <div class="flex items-center gap-4">
-                    <div class="p-4 bg-pink-100 rounded-2xl text-pink-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                        </svg>
-                    </div>
-                    <div>
-                        <h2 class="text-3xl font-extrabold text-gray-800">Mantenimiento y Redes</h2>
-                        <p class="text-pink-600 font-medium">Portafolio de Trabajos en Canva</p>
-                    </div>
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-800">Mantenimiento y Redes</h2>
+                    <p class="text-pink-600 font-medium font-bold uppercase tracking-widest text-xs mt-2">Nube: tareatania2026</p>
                 </div>
-                
-                <div class="mt-6 md:mt-0 bg-pink-50 p-6 rounded-2xl border border-pink-100 w-full md:w-auto">
-                    <p class="text-xs font-bold text-pink-700 uppercase mb-3 tracking-widest">Añadir Nuevo Proyecto</p>
+                <div class="mt-6 md:mt-0 bg-pink-50 p-6 rounded-2xl border border-pink-100">
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <input type="text" id="proj-name" placeholder="Ej: Redes LAN" class="text-sm p-3 border rounded-xl focus:ring-2 focus:ring-pink-400 outline-none w-full sm:w-48">
-                        <input type="text" id="proj-url" placeholder="Link de Canva" class="text-sm p-3 border rounded-xl focus:ring-2 focus:ring-pink-400 outline-none w-full sm:w-64">
-                        <button onclick="addProject()" class="bg-pink-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-pink-700 transition shadow-md">
+                        <input type="text" id="proj-name" placeholder="Nombre (ej. Red LAN)" class="text-sm p-3 border rounded-xl outline-none w-full sm:w-48">
+                        <input type="text" id="proj-url" placeholder="Link de Canva" class="text-sm p-3 border rounded-xl outline-none w-full sm:w-64">
+                        <button onclick="window.addProject()" class="bg-pink-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-pink-700 transition shadow-md">
                             + Crear QR
                         </button>
                     </div>
                 </div>
             </div>
-
-            <!-- Contenedor de Proyectos con Scroll si hay muchos -->
-            <div id="projects-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 min-h-[200px]">
-                <!-- Los proyectos dinámicos aparecerán aquí -->
-            </div>
+            <div id="projects-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 min-h-[200px]"></div>
         </section>
-
     </main>
 
-    <footer class="bg-gray-100 mt-20 py-12 text-center">
-        <p class="text-gray-400 text-sm">&copy; 2024 - Mi Portal Estudiantil</p>
-        <p class="text-gray-300 text-xs mt-2 uppercase tracking-tighter italic">Bachilleres - Cuarto Semestre</p>
+    <footer class="bg-gray-100 mt-20 py-12 text-center text-gray-400 text-sm">
+        &copy; 2024 - Mi Portal de Bachilleres
     </footer>
 
-    <script>
-        // Lista de proyectos almacenada en memoria (puedes añadir los tuyos aquí)
-        let myProjects = [
-            { name: "Seguridad de Redes", url: "https://www.canva.com/template/sample1" },
-            { name: "Topologías LAN", url: "https://www.canva.com/template/sample2" }
-        ];
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-        // Función para renderizar los proyectos
-        function renderProjects() {
+        const firebaseConfig = {
+            apiKey: "AIzaSyAqp6spyFDA9KXt4hxcNAbemNMsujMVJp4",
+            authDomain: "tareatania2026.firebaseapp.com",
+            projectId: "tareatania2026",
+            storageBucket: "tareatania2026.firebasestorage.app",
+            messagingSenderId: "274394027065",
+            appId: "1:274394027065:web:4b1c4053d45e935c1829e8",
+            measurementId: "G-038SJ05GFM"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        const loading = document.getElementById('loading-overlay');
+
+        loading.style.display = 'flex';
+
+        signInAnonymously(auth).then(() => {
+            onSnapshot(collection(db, "proyectos"), (snap) => {
+                const list = [];
+                snap.forEach(d => list.push({ id: d.id, ...d.data() }));
+                render(list);
+                loading.style.display = 'none';
+            });
+        }).catch(e => {
+            console.error(e);
+            loading.innerText = "Error de conexión";
+        });
+
+        function render(projects) {
             const container = document.getElementById("projects-container");
-            container.innerHTML = ""; 
-
-            if (myProjects.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-center py-10 text-gray-400 italic">No has agregado proyectos aún. Usa el formulario de arriba.</div>`;
-                return;
-            }
-
-            myProjects.forEach((proj, index) => {
-                const id = `qr-${index}`;
-                
+            container.innerHTML = projects.length === 0 ? `<p class="col-span-full text-center py-10 text-gray-400">Sin proyectos aún.</p>` : "";
+            projects.forEach(p => {
+                const id = `qr-${p.id}`;
                 const card = document.createElement("div");
                 card.className = "qr-card shadow-sm";
-                card.innerHTML = `
-                    <p class="text-sm font-bold text-gray-700 mb-4 text-center h-10 flex items-center">${proj.name}</p>
-                    <div id="${id}" class="bg-white p-2 rounded-lg mb-4"></div>
-                    <div class="flex gap-2 w-full mt-auto">
-                        <a href="${proj.url}" target="_blank" class="flex-1 bg-gray-100 text-gray-600 text-xs py-2 rounded-lg hover:bg-gray-200 transition text-center font-medium">Ver Link</a>
-                        <button onclick="deleteProject(${index})" class="bg-red-50 text-red-400 p-2 rounded-lg hover:bg-red-100 transition">
-                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                        </button>
-                    </div>
-                `;
-                
+                card.innerHTML = `<p class="text-sm font-bold text-gray-700 mb-4 text-center">${p.name}</p><div id="${id}" class="mb-4"></div><div class="flex gap-2 w-full mt-auto"><a href="${p.url}" target="_blank" class="flex-1 bg-gray-100 text-gray-600 text-xs py-2 rounded-lg text-center font-medium">Link</a><button onclick="window.deleteProject('${p.id}')" class="bg-red-50 text-red-400 p-2 rounded-lg hover:bg-red-100 transition"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg></button></div>`;
                 container.appendChild(card);
-
-                // Generar el código QR
-                new QRCode(document.getElementById(id), {
-                    text: proj.url,
-                    width: 140,
-                    height: 140,
-                    colorDark : "#be185d", // Rosa oscuro
-                    colorLight : "#ffffff",
-                    correctLevel : QRCode.CorrectLevel.M
-                });
+                new QRCode(document.getElementById(id), { text: p.url, width: 140, height: 140, colorDark : "#be185d" });
             });
         }
 
-        function addProject() {
-            const nameInput = document.getElementById("proj-name");
-            const urlInput = document.getElementById("proj-url");
-
-            if (!nameInput.value || !urlInput.value) {
-                return; // Evitar vacíos
+        window.addProject = async () => {
+            const n = document.getElementById("proj-name").value;
+            const u = document.getElementById("proj-url").value;
+            if (n && u) {
+                await addDoc(collection(db, "proyectos"), { name: n, url: u, ts: Date.now() });
+                document.getElementById("proj-name").value = "";
+                document.getElementById("proj-url").value = "";
             }
+        };
 
-            myProjects.push({
-                name: nameInput.value,
-                url: urlInput.value
-            });
-
-            nameInput.value = "";
-            urlInput.value = "";
-            renderProjects();
-        }
-
-        function deleteProject(index) {
-            myProjects.splice(index, 1);
-            renderProjects();
-        }
-
-        // Ejecutar al cargar la página
-        window.onload = renderProjects;
+        window.deleteProject = async (id) => {
+            if (confirm("¿Borrar?")) await deleteDoc(doc(db, "proyectos", id));
+        };
     </script>
 </body>
 </html>
